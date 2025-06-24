@@ -22,58 +22,144 @@
 #define ACS_TRBLIMITR_EL1_nVM   (1 << 5)
 #define ACS_TRBLIMITR_EL1_XE    (1 << 6)
 
-#define TR_I_ADDR_CTXT_L_32IS0  0x82
-#define TR_I_ADDR_CTXT_L_32IS1  0x83
-#define TR_I_ADDR_CTXT_L_64IS0  0x85
-#define TR_I_ADDR_CTXT_L_64IS1  0x86
+/* Trace Packet Header */
 
-#define TR_I_TS_PKT_V1          0x02
-#define TR_I_TS_PKT_V2          0x03
-#define TR_I_TS_MARKER          0x88
-#define TR_I_TS_MARKER          0x88
+#define TRACE_ALIGNMENT_PKT               0x00  /*  Alignment Packet  */
+#define TRACE_INFO_PKT                    0x01  /*  Trace Info Packet */
+#define TRACE_TIMESTAMP_V1_PKT            0x02  /*  Timestamp Packet (Format 1)  */
+#define TRACE_TIMESTAMP_V2_PKT            0x03  /*  Timestamp Packet (Format 2)  */
+#define TRACE_TRACE_ON_PKT                0x04  /*  Trace On Packet  */
+#define TRACE_EXCEPTION_PKT               0x06  /*  Exception Packet */
+#define TRACE_INSTRUMENT_PKT              0x09  /*  Instrumentation Packet    */
+#define TRACE_TRANSACTION_START_PKT       0x0A  /*  Transaction Start Packet  */
+#define TRACE_TRANSACTION_COMMIT_PKT      0x0B  /*  Transaction Commit Packet */
+#define TRACE_CC_F2_0_SMALL_COMMIT_PKT    0x0C  /*  Cycle Count Format 2, Small Commit Packet  */
+#define TRACE_CC_F2_1_PKT                 0x0D  /*  Cycle Count Format 2.1 Packet        */
+#define TRACE_CC_F1_X_COUNT_PKT           0x0E  /*  Cycle Count Format 1, known count    */
+#define TRACE_CC_F1_X_UNK_COUNT_PKT       0x0F  /*  Cycle Count Format 1, unknown count  */
+#define TRACE_COMMIT_PKT                  0x2D  /*  Commit Packet  */
 
-#define TR_I_ADDR_L_32IS0       0x9A
-#define TR_I_ADDR_L_32IS1       0x9B
-#define TR_I_ADDR_L_64IS0       0x9C
-#define TR_I_ADDR_L_64IS1       0x9D
+#define TRACE_EXACT_MATCH_ADDR_PKT        0x24  /*  Exact Match Address Packet                 */
+#define EXCEPTION_SHORT_ADDR_PKT          0x25  /*  Exception Packet with Short Add (IS0/IS1)  */
+#define EXCEPTION_32BIT_ADDR_PKT          0x26  /*  Exception Packet with 32-bit Add (IS0/IS1) */
+#define EXCEPTION_64BIT_ADDR_PKT          0x27  /*  Exception Packet with 64-bit Add (IS0/IS1) */
 
-/* Alignment Sync Packet */
-#define TR_ALIGN_SYNC_PKT_LEN   12
-/* Trace Info Packet */
-#define TR_TRACE_INFO_V1_LEN    2
-#define TR_TRACE_INFO_INFO_LEN  1
-#define TR_TRACE_INFO_SPEC_LEN  5
-#define TR_TRACE_INFO_CYCT_LEN  2
-/* Trace On Packet */
-#define TR_TRACE_ON_LEN         1
+#define TRACE_IGNORE_PKT                  0x70  /*  Ignore Packet (Event or Placeholder)       */
+#define TRACE_CONTEXT_SAME_PKT            0x80  /*  Same Context Packet        */
+#define TRACE_CONTEXT_PKT                 0x81  /*  Context Packet (2 bytes)   */
+#define TRACE_TIMESTAMP_MARKER_PKT        0x88  /*  Timestamp Marker Packet    */
+#define TRACE_Q_PKT                       0xAF  /*  Q Packet (Compressed or Composite trace)   */
 
-#define TR_ADDR_START_BYTE_NUM      15 /* Alignment Synchronization Packet + Trace Info + On */
+#define CTX_32BIT_IS0_PKT                 0x82  /*  Target Address with Context 32-bit IS0/IS1 */
+#define CTX_32BIT_IS1_PKT                 0x83  /*  Target Address with Context 32-bit IS0/IS1 */
+#define CTX_64BIT_IS0_PKT                 0x85  /*  Target Address with Context 64-bit IS0/IS1 */
+#define CTX_64BIT_IS1_PKT                 0x86  /*  Target Address with Context 64-bit IS0/IS1 */
 
-#define TR_ADDR_CTXT_L_32_MID       5
-#define TR_ADDR_CTXT_L_32_V1_LEN    6
-#define TR_ADDR_CTXT_L_32_V2_LEN    10
-#define TR_ADDR_CTXT_L_32_V3_LEN    10
-#define TR_ADDR_CTXT_L_32_V4_LEN    14
+#define TARGET_ADDR_SHORT_IS0_PKT         0x95  /*  Target Address Short IS0 Packet  */
+#define TARGET_ADDR_SHORT_IS1_PKT         0x96  /*  Target Address Short IS1 Packet  */
 
-#define TR_ADDR_CTXT_L_64_MID       9
-#define TR_ADDR_CTXT_L_64_V1_LEN    10
-#define TR_ADDR_CTXT_L_64_V2_LEN    14
-#define TR_ADDR_CTXT_L_64_V3_LEN    14
-#define TR_ADDR_CTXT_L_64_V4_LEN    18
+#define TARGET_ADDR_32BIT_IS0_PKT         0x9A  /*  Target Address 32-bit IS0 Packet */
+#define TARGET_ADDR_32BIT_IS1_PKT         0x9B  /*  Target Address 32-bit IS1 Packet */
 
-#define TR_ADDR_L_32_LEN    5
+#define TARGET_ADDR_64BIT_IS0_PKT         0x9D  /*  Target Address 64-bit IS0 Packet */
+#define TARGET_ADDR_64BIT_IS1_PKT         0x9E  /*  Target Address 64-bit IS1 Packet */
 
-#define TR_ADDR_L_64_LEN    9
+#define Q_SHORT_ADDR_IS0_PKT              0xA5  /*  Q short address IS0 Packet  */
+#define Q_SHORT_ADDR_IS1_PKT              0xA6  /*  Q short address IS1 Packet  */
+
+#define Q_32BIT_ADDR_IS0_PKT              0xAA  /*  Q 32-bit address IS0 Packet  */
+#define Q_32BIT_ADDR_IS1_PKT              0xAB  /*  Q 32-bit address IS1 Packet  */
+
+#define Q_COUNT_PKT                       0xAC  /*  Q with count Packet (Commit)  */
+
+#define SRC_SHORT_ADDR_IS0_PKT            0xB4  /*  Source Address Short IS0 Packet  */
+#define SRC_SHORT_ADDR_IS1_PKT            0xB5  /*  Source Address Short IS1 Packet  */
+
+#define SRC_32BIT_ADDR_IS0_PKT            0xB6  /*  Source Address 32-bit IS0 Packet  */
+#define SRC_32BIT_ADDR_IS1_PKT            0xB7  /*  Source Address 32-bit IS1 Packet  */
+
+#define SRC_64BIT_ADDR_IS0_PKT            0xB8  /*  Source Address 64-bit IS0 Packet  */
+#define SRC_64BIT_ADDR_IS1_PKT            0xB9  /*  Source Address 64-bit IS1 Packet  */
+
+
+/* Trace Header Value and Mask */
+
+#define CYCLE_COUNT_FORMAT_3_1_MASK       0xFC
+#define CYCLE_COUNT_FORMAT_3_1_VAL        0x10  /*  Cycle Count Format 3_1 Packet */
+
+#define MISPREDICT_PKT_MASK               0xFC
+#define MISPREDICT_PKT_VAL                0x30  /*  Mispredict Packet */
+
+#define CANCEL_FORMAT_2_PKT_MASK          0xFC
+#define CANCEL_FORMAT_2_PKT_VAL           0x34  /*  Cancel Format 2 Packet */
+
+#define CANCEL_FORMAT_3_PKT_MASK          0xF8
+#define CANCEL_FORMAT_3_PKT_VAL           0x38  /*  Cancel Format 3 Packet */
+
+#define EVENT_PKT_MASK                    0xF0
+#define EVENT_PKT_VAL                     0x70  /*  Event Packet */
+
+#define TARGET_ADDR_EXACT_MATCH_MASK      0xFC
+#define TARGET_ADDR_EXACT_MATCH_VAL       0x90  /*  Target Address Exact Match Packet */
+
+#define SRC_ADDR_EXACT_MATCH_MASK         0xFC
+#define SRC_ADDR_EXACT_MATCH_VAL          0xB0  /*  Source Address Exact Match Packet */
+
+#define ATOM_FORMAT_X_PKT_MASK            0xC0
+#define ATOM_FORMAT_X_PKT_VAL             0xC0  /*  Atom Format X Packet */
+
+#define CYCLE_COUNT_FORMAT_3_0_MASK       0xF0
+#define CYCLE_COUNT_FORMAT_3_0_VAL        0x10  /*  Cycle Count Format 3_0 Packet */
+
+#define CANCEL_FORMAT_1_PKT_MASK          0xFE
+#define CANCEL_FORMAT_1_PKT_VAL           0x2E  /*  Cancel Format 1 Packet */
+
+#define Q_EXACT_MATCH_PKT_MASK            0xFC
+#define Q_EXACT_MATCH_PKT_VAL             0xA0  /*  Q with Exact Match Address Packet */
+
+/* Trace Packet Length */
+
+#define DISCARD_OVERFLOW_PKT_LEN        0x02
+#define ALIGN_SYNC_PKT_LEN              0x0C
+#define TRACE_INFO_PKT_LEN              0x02
+#define TRACE_PKT_MIN_LEN               0x01
+#define TRACE_EXCEPTION_32_PKT_LEN      0x08
+#define TRACE_EXCEPTION_64_PKT_LEN      0x0C
+#define TRACE_SHORT_PKT_LEN             0x03
+#define EXCEPTION_SHORT_ADDR_PKT_LEN    0x05
+#define EXCEPTION_32_ADDR_PKT_LEN       0x07
+#define EXCEPTION_64_ADDR_PKT_LEN       0x0B
+#define TRACE_INSTRUMENT_PKT_LEN        0x0A
+#define TRACE_CC_F2_PKT_LEN             0x02
+#define TARGET_ADDR_32BIT_ISX_PKT_LEN   0x05
+#define TARGET_ADDR_64BIT_ISX_PKT_LEN   0x09
+#define Q_32BIT_ADDR_IS0_PKT_A_LEN      0x05
+#define SRC_32BIT_ADDR_PKT_LEN          0x05
+#define SRC_64BIT_ADDR_PKT_LEN          0x09
+
+/* Tace Packet Layout Length */
+
+#define CC_LAYOUT_LEN                   0x01
+#define CYCT_LAYOUT_LEN                 0x02
+#define SPEC_LAYOUT_LEN                 0x05
+#define VMID_LAYOUT_LEN                 0x04
+#define CONTEXTID_LAYOUT_LEN            0x04
+
+
 
 #define SH_TRACE_ENABLE_TRUE    1
 #define SH_TRACE_ENABLE_FALSE   0
 
 /* Timestamp */
-#define TS_VALUE_MASK       0x7F
-#define TS_CONTINUE_MASK    0x80
+#define TS_VALUE_MASK          0x7F
+#define CONTINUITY_BIT_MASK    0x80
+
+/* Timestamp Invalid */
+#define TRACE_PKT_INVALID 0xFFFF
 
 /* Trace Related Calls */
-
+uint64_t trace_cbit_len(uint8_t *trace_stream, uint64_t index, uint64_t position,
+                                     uint64_t layout_len);
 uint64_t val_ete_get_trace_timestamp(uint64_t buffer_address);
 uint64_t val_ete_generate_trace(uint64_t buffer_address, uint32_t self_hosted_trace_enabled);
 
