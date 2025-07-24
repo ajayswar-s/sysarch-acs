@@ -1,22 +1,17 @@
-###########################
-BSA ACS Testcase checklist
-###########################
+#############################
+PC-BSA ACS Testcase checklist
+#############################
 
 The below table provides the following details
 
-#. BSA Level at which test run.
-#. BSA rules covered by a test.
-#. SystemReady band(IR, ES and SR) for which test is required.
-#. Runtime environment(UEFI, BareMetal and Linux) where test executes.
-#. Tests for which exerciser is required.
-
-
-
+#. PC BSA Level at which test run.
+#. PC BSA rules covered by ACS.
+#. The Platfrom which covers the PC BSA Rules.
 
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | Test No | Test Description                       | Level | Rule ID   | Coverage  | Platform |
 +=========+========================================+=======+===========+===========+==========+
-| -       | Covered by BSA Rules                   | 1     | P_L1_01   |           | BSA      |
+| -       | Covered by BSA Rules                   | 1     | P_L1_01   |Run Bsa.efi| UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 4,68    | Check PE 4KB Granule Support           | 1     | P_L1PE_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
@@ -38,7 +33,7 @@ The below table provides the following details
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 212     | Check GIC version                      | 1     | P_L1GI_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| 846     | Check all MSI(X) vectors are LPIs      | 1     | P_L1GI_02 | yes Linux | Linux    |
+| 846     | Check all MSI(X) vectors are LPIs      | 1     | P_L1GI_02 |Yes        | Linux    |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 10      | Check GIC supports disabling LPIs      | 1     | P_L1GI_03 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
@@ -46,7 +41,7 @@ The below table provides the following details
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 214     | Check All PPI Interrupt IDs            | 1     | P_L1PP_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SM_01 | no Manual | Manual   |
+| -       | -                                      | 1     | P_L1SM_01 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 301     | Check SMMU Compatibility               | 1     | P_L1SM_02 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
@@ -56,32 +51,32 @@ The below table provides the following details
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 322     | Check if all DMA reqs behind SMMU      | 1     | P_L1SM_05 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1PCI_1 |           | Manual   |
+| -       | -                                      | 1     | P_L1PCI_1 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 687     | Check EA Capability                    | 1     | P_L1PCI_2 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1NV_01 |           | UEFI     |
+| -       | RuntimeServices/VariableServicesTest   | 1     | P_L1NV_01 | Yes       | SCT      |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SE_01 |           | UEFI     |
+| -       | RuntimeServices/VariableServicesTest   | 1     | P_L1SE_01 | Yes       | SCT      |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SE_02 |           | Manual   |
+| -       | -                                      | 1     | P_L1SE_02 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SE_03 | No Manual | Manual   |
+| -       | -                                      | 1     | P_L1SE_03 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SE_04 | No manual | Manual   |
+| -       | -                                      | 1     | P_L1SE_04 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1SE_05 | No manual | Manual   |
+| -       | -                                      | 1     | P_L1SE_05 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| 1501    | Check TPM Version                      | 1     | P_L1TP_01 | yes       | UEFI     |
+| 1501    | Check TPM Version                      | 1     | P_L1TP_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1TP_02 | Manual    | Manual   |
+| -       | -                                      | 1     | P_L1TP_02 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| 1502    | Check TPM interface locality support   | 1     | P_L1TP_03 | yes       | UEFI     |
+| 1502    | Check TPM interface locality support   | 1     | P_L1TP_03 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | -                                      | 1     | P_L1TP_04 | Manual    | Manual   |
+| -       | -                                      | 1     | P_L1TP_04 | No        | Manual   |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| 701  FR | Non Secure Watchdog Access             | FR    | P_L2WD_01 | yes       | UEFI     |
+| 701     | Non Secure Watchdog Access             | FR    | P_L2WD_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| 702 FR  | Check Watchdog WS0 interrupt           | FR    | P_L2WD_01 | yes       | UEFI     |
+| 702     | Check Watchdog WS0 interrupt           | FR    | P_L2WD_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-For running tests on a bare-metal environment, integration of ACS with platform boot code is required. See `arm BSA Bare-metal User Guide <arm_bsa_architecture_compliance_bare-metal_user_guide.pdf>`_
+For complete PC-BSA test coverage, it is necessary to also run the BSA tests
