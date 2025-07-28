@@ -76,6 +76,7 @@ Note: If /mnt/acs/ is not already created, you may need to create it using mkdir
 5. Type 'fs<x>' where '<x>' is replaced by the number determined in step 4.
 6. To start the compliance tests, run the executable PC_Bsa.efi with the appropriate parameters.
 7. Copy the UART console output to a log file for analysis.
+   
 #### 2.2 Emulation environment without secondary storage
 
 On an emulation platform where secondary storage is not available, perform the following steps:
@@ -84,6 +85,38 @@ On an emulation platform where secondary storage is not available, perform the f
 2. Build UEFI image including the UEFI Shell.
 3. Boot the system to UEFI shell.
 4. Copy the UART console output to a log file for analysis.
+
+## Application arguments
+Command line arguments are similar for uefi application, with some exceptions.
+Some of the mostly used uefi arguments are listed below,
+
+#### -v
+Choose the verbosity level.
+
+- 5 - ERROR
+- 4 - WARN and ERROR
+- 3 - TEST and above
+- 2 - DEBUG and above
+- 1 - INFO and above
+
+#### -skip
+Overrides the suite to skip the execution of a particular
+test. For example, <i>-skip 10</i> skips test 10.
+
+#### -f (Only for UEFI application)
+Save the test output into a file in secondary storage. For example <i>-f pc_bsa.log</i> creates a file pc_bsa.log with test output.
+
+#### -fr
+Use this option to run PC BSA tests intended for future requirement validation.
+
+#### -help
+Displays all available command-line arguments and their usage.
+
+### UEFI example
+
+Shell> PC_Bsa.efi -v 1 -skip 15,20,30 -f pcbsa_uefi.log
+
+Runs PCBSA ACS with verbosity INFO, skips test 15, 20 and 30 and saves the test results in <i>pcbsa_uefi.log</i>.
 
 ## PC BSA Linux Application
 
