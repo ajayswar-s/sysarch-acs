@@ -8,8 +8,7 @@ The below table provides the following details
 #. PC BSA rules covered by ACS.
 #. The Platfrom which covers the PC BSA Rules.
 
-.. note::
-
+**Note:**
    For rules not testable by ACS, a **manual declaration of compliance** from the DUT owner is required for PC BSA compliance.
 
 +---------+----------------------------------------+-------+-----------+------------------+----------+
