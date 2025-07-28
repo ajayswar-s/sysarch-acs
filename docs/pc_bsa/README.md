@@ -14,7 +14,7 @@ For more information, please refer the [PC-BSA specification](https://developer.
 The PC BSA tests are distributed across various ACS components, including SCT tests, UEFI-based tests, and a Linux-based test. Full compliance also requires running the Bsa.efi application and includes some manual verification.
 
 ### Below are the sections that collectively cover PC BSA rules:
-- [UEFI-based Tests]()
+- [UEFI-based Tests](#pc-bsa-uefi-shell-application-build-instructions)
 - Linux-based Tests.
 - SCT-based Tests
 - BSA Uefi Coverage
@@ -181,7 +181,7 @@ PC_bsa.efi      # Launch the PC BSA test
 
 ### Notes
 
-- Ensure the `.efi` binary is copied correctly into the image using the steps in the [secondary-storage setup section](#22-emulation-environment-without-secondary-storage).
+- Ensure the `.efi` binary is copied correctly into the image using the steps in the [secondary-storage setup section]((#21-emulation-environment-with-secondary-storage).
 - Capture UART output logs for test verification and reporting.
 
 ## Guidance on running SCT testcase
