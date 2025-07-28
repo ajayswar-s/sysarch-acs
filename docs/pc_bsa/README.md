@@ -15,9 +15,9 @@ The PC BSA tests are distributed across various ACS components, including SCT te
 
 ### Below are the sections that collectively cover PC BSA rules:
 - [UEFI-based Tests](#pc-bsa-uefi-shell-application-build-instructions)
-- Linux-based Tests.
-- SCT-based Tests
-- BSA Uefi Coverage
+- [Linux-based Tests](#pc-bsa-linux-application)
+- [SCT-based Tests](#guidance-on-running-sct-testcase)
+- [BSA Uefi Coverage](#guidance-on-running-bsa-uefi-coverage)
 
 
 ## PC BSA UEFI Shell Application Build Instructions
@@ -188,7 +188,7 @@ PC_bsa.efi      # Launch the PC BSA test
 - PC-BSA rules `P_L1NV_01` and `P_L1SE_01` requires [VariableServicesTest](https://github.com/tianocore/edk2-test/tree/master/uefi-sct/SctPkg/TestCase/UEFI/EFI/RuntimeServices/VariableServices/BlackBoxTest) SCT test to be run for compliance check. Please refer to [BBR ACS User Guide](https://github.com/ARM-software/bbr-acs/blob/main/README.md) for instructions to build and run SCT test suite. see the [SCT User Guide](http://www.uefi.org/testtools)for instructions on choosing and running individual testcase from UEFI Shell.
 
 ## Guidance on running Bsa Uefi Coverage
-Rule **P_L1_01** is covered by BSA ACS. Compliance requires running Bsa.efi. Refer to the BSA ACS User Guide for instructions to build and run Bsa.efi from the UEFI Shell.
+Rule **P_L1_01** is covered by BSA ACS. Compliance requires running Bsa.efi. Refer to the [BSA ACS README](../../README.md#bsa-architecture-compliance-suite) for instructions to build and run Bsa.efi from the UEFI Shell.
 
 
 ## Limitations
