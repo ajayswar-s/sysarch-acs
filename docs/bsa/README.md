@@ -24,34 +24,37 @@ Note: The details of the packages are beyond the scope of this document.
 
 1. Setup edk2 build directory
 
->	 git clone git clone --branch edk2-stable202505 --depth 1 git@github.com:tianocore/edk2.git<br>
->	 git clone https://github.com/tianocore/edk2-libc edk2/edk2-libc<br>
->	 cd edk2<br>
->	 git submodule update --init --recursive<br>
+>	1. git clone git clone --branch edk2-stable202505 --depth 1 git@github.com:tianocore/edk2.git<br>
+>	2. git clone https://github.com/tianocore/edk2-libc edk2/edk2-libc<br>
+>	3. cd edk2<br>
+>	4. git submodule update --init --recursive<br>
 
 2. Download source files and apply edk2 patch
 >	 git clone "ssh://ajas01@ap-gerrit-1.ap01.arm.com:29418/avk/sysarch-acs" ShellPkg/Application/sysarch-acs
 
 3. Build pc-bsa-acs UEFI app <br>
 Note :  Install GCC-ARM 13.2 [toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
->  export GCC49_AARCH64_PREFIX=<path to CC>arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-<br>
->  export PACKAGES_PATH=$pwd/edk2-libc<br>
->  source edksetup.sh<br>
->  make -C BaseTools/Source/C<br>
->  source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh pc_bsa<br>
+> 1. export GCC49_AARCH64_PREFIX=<path to CC>arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-<br>
+> 2. export PACKAGES_PATH=$pwd/edk2-libc<br>
+> 3. source edksetup.sh<br>
+> 4. make -C BaseTools/Source/C<br>
+> 5. source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh pc_bsa<br>
 
 4. PC BSA EFI application path
 - The EFI executable file is generated at <edk2-path>/Build/Shell/DEBUG_GCC49/AARCH64/PC_Bsa.efi
 
+###2. Execution Steps
+The execution of the compliance suite varies depending on the test environment. These steps assume that the test suite is invoked through the ACS UEFI shell application
 
-### 2 Emulation environment with secondary storage
+#### 2.1 Emulation environment with secondary storage
 On an emulation environment with secondary storage, perform the following steps:
 
 1. Create an image file which contains the '.efi' file. For example:
->  mkfs.vfat -C -n HD0 hda.img 2097152<br>
->  sudo mount hda.img /mnt/acs/<br>
->  sudo cp PC_Bsa.efi /mnt/acs<br>
->  sudo umount /mnt/acs<br>
+> 1. mkfs.vfat -C -n HD0 hda.img 2097152<br>
+> 2. sudo mount hda.img /mnt/acs/<br>
+> 3. sudo cp PC_Bsa.efi /mnt/acs<br>
+> 4. sudo umount /mnt/acs<br>
+
 Note: If /mnt/acs/ is not already created, you may need to create it using mkdir -p /mnt/acs/.
 
 2. Load the image file to the secondary storage using a backdoor. The steps to load the image file are emulation environment-specific and beyond the scope of this document.
@@ -61,7 +64,7 @@ Note: If /mnt/acs/ is not already created, you may need to create it using mkdir
 6. To start the compliance tests, run the executable PC_Bsa.efi with the appropriate parameters.
 7. Copy the UART console output to a log file for analysis and certification
 
-#### 2.3 Emulation environment without secondary storage
+#### 2.2 Emulation environment without secondary storage
 
 On an emulation platform where secondary storage is not available, perform the following steps:
 
@@ -107,43 +110,30 @@ After the run is complete, you can remove the PC BSA module from the system if i
 shell> sudo rmmod bsa_acs
 shell> sudo rmmod sbsa_acs
 ```
-- For information on the PC BSA Linux build parameters and limitation, see the README linux.
+- For information on the PC BSA Linux build parameters and limitation, see the [**Build Paramters and Limitations**](https://github.com/ajayswar-s/sysarch-acs/tree/README-PCBSA?tab=readme-ov-file#build-script-aguments)
 
-### Test suite execution on TC3 platform
-
-## ✅ Test Suite Execution on TC3 (LSC23) FVP Platform
+## Test suite execution on TC3 platform
 
 ### 1. Follow TC3 Setup Guide
 
 Begin by following the steps in the official [**LSC23 TC3 Setup Guide**](https://totalcompute.docs.arm.com/en/lsc23.1/totalcompute/lsc23/user-guide.html) to set up the TC3 platform and workspace.
 
----
 
 ### 2. Download the TC3 FVP Model
 
-Refer to the official Arm Total Compute FVP download page:\
-👉 [**TC3 Model – Arm Developer**](https://developer.arm.com/Tools%20and%20Software/Fixed%20Virtual%20Platforms/Total%20Compute%20FVPs)
+Refer to the official Arm Total Compute FVP download page: [**TC3 Model – Arm Developer**](https://developer.arm.com/Tools%20and%20Software/Fixed%20Virtual%20Platforms/Total%20Compute%20FVPs)
 
----
 
 ### 3. Set Up Environment Variable
 
 ```bash
-export MODEL=$PWD/FVP_TC3
+export MODEL=<path of FVP_TC3>
 ```
-
----
 
 ### 4. Prepare ACS Disk Image
 
-Follow the steps in [**Emulation environment with secondary-storage**](../README.md#22-emulation-environment-with-secondary-storage) to create a FAT-formatted `.img` file containing the `PC_bsa.efi` binary.
+Follow the steps in [**Emulation environment with secondary-storage**] to create a FAT-formatted `.img` file containing the `PC_bsa.efi` binary.
 
-- Save the image as:
-  ```bash
-  acs.img
-  ```
-
----
 
 ### 5. Update ACS Image Path in Model Run Script
 
@@ -162,10 +152,9 @@ ACS_DISK_IMAGE="$DEPLOY_DIR/systemready_acs_live_image.img"
 Replace it with:
 
 ```bash
-ACS_DISK_IMAGE="$DEPLOY_DIR/acs.img"
+ACS_DISK_IMAGE="$DEPLOY_DIR/hda.img"
 ```
 
----
 
 ### 6. Run the TC3 Model
 
@@ -175,8 +164,6 @@ Navigate to the TC3 run-script directory and launch the model:
 cd <TC_WORKSPACE>/run-scripts/tc3
 ./run_model.sh -m $MODEL -d acs-test-suite
 ```
-
----
 
 ### 7. Run the PC BSA Test from UEFI Shell
 
@@ -190,9 +177,7 @@ fs0:            # Replace 0 with the correct disk number
 PC_bsa.efi      # Launch the PC BSA test
 ```
 
----
-
-### ✅ Notes
+### Notes
 
 - Ensure the `.efi` binary is copied correctly into the image using the steps in the [secondary-storage setup section](../README.md#22-emulation-environment-with-secondary-storage).
 - Capture UART output logs for test verification and reporting.
