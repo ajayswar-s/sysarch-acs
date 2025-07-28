@@ -56,7 +56,7 @@ The tests can also be executed in a Bare-metal environment. The initialization o
 2.  export PACKAGES_PATH= path pointing to edk2-libc
 3.  source edksetup.sh
 4.  make -C BaseTools/Source/C
-5.  source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh unified 
+5.  source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh unified
 
 #### 1.3 Build output
 
@@ -104,7 +104,7 @@ Prebuilt images for each release are available in the prebuilt_images folder of 
     Before you start the ACS build, ensure that the following requirements are met.
 
 - Any mainstream Linux-based OS distribution running on a x86 or AArch64 machine.
-- git clone the [EDK2 tree](https://github.com/tianocore/edk2). Recommended edk2 commit is edk2-stable202505
+- git clone the [EDK2 tree](https://github.com/tianocore/edk2). Recommended edk2 commit is 836942fbadb629050b866a8052e6af755bcdf623
 - git clone the [EDK2 port of libc](https://github.com/tianocore/edk2-libc) to local <edk2_path>.
 - Install GCC-ARM 13.2 [toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads).
 - Install the build prerequisite packages to build EDK2.<br />
@@ -191,7 +191,7 @@ Prebuilt images for each release are available in the prebuilt_images folder of 
     Before you start the ACS build, ensure that the following requirements are met.
 
 - Any mainstream Linux-based OS distribution running on a x86 or AArch64 machine.
-- git clone the [EDK2 tree](https://github.com/tianocore/edk2). Recommended edk2 commit is edk2-stable202505
+- git clone the [EDK2 tree](https://github.com/tianocore/edk2). Recommended edk2 commit is 836942fbadb629050b866a8052e6af755bcdf623
 - git clone the [EDK2 port of libc](https://github.com/tianocore/edk2-libc) to local <edk2_path>.
 - Install GCC-ARM 13.2 [toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads).
 - Install the build prerequisite packages to build EDK2.<br />
@@ -304,7 +304,7 @@ NOTE: <br />
 The following steps describe how to build the BSA kernel module and application using the build.sh script.
 The build.sh script supports both native builds and cross-compilation.
 - For Native Builds, run the script directly on the target machine.
-- For Cross-Compilation, pass the Linux version and GCC tool version as script arguments. 
+- For Cross-Compilation, pass the Linux version and GCC tool version as script arguments.
 
 ##### Linux Build Steps (Script)
 
@@ -371,7 +371,7 @@ For SBSA ACS
 shell> ./sbsa_app or ./sbsa
 ```
 
-  - For information on the BSA Linux application parameters, see the [BSA User Guide](docs/bsa/arm_bsa_architecture_compliance_user_guide.pdf) and for SBSA see the [BSA User Guide](docs/sbsa/arm_sbsa_architecture_compliance_user_guide.pdf) 
+  - For information on the BSA Linux application parameters, see the [BSA User Guide](docs/bsa/arm_bsa_architecture_compliance_user_guide.pdf) and for SBSA see the [BSA User Guide](docs/sbsa/arm_sbsa_architecture_compliance_user_guide.pdf)
 
 #### 2.3 BSA Linux Test Log View
 ```sh
@@ -385,7 +385,7 @@ shell> sudo rmmod sbsa_acs
 
 ```
 
-### Build Script aguments
+### Build Script arguments
 The following arguments can be used when running the build.sh script:
 
 - __-v or --version__ \- Specifies the Linux kernel version to be used for cross-compilation.
@@ -467,7 +467,7 @@ The Arm SystemReady ACS test suite may run at a higher privilege level. An attac
 **Note:** To build the ACS with NIST Statistical Test Suite, see the [arm SBSA_NIST_User_Guide Document](docs/sbsa/arm_sbsa_nist_user_guide.md)
 
 ## DRTM, System MPAM and mem_test
-**Note:** 
+**Note:**
 - To run DRTM ACS, please see the [DRTM README](docs/drtm/README.md)
 - To run System MPAM tests, see the [MPAM README](docs/mpam/README.md)
 - To run mem_test, see the [MEMTEST_README](mem_test/README.md)
