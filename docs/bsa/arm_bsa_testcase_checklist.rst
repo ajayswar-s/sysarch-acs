@@ -11,7 +11,7 @@ The below table provides the following details
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | Test No | Test Description                       | Level | Rule ID   | Coverage  | Platform |
 +=========+========================================+=======+===========+===========+==========+
-| -       | Covered by BSA Rules                   | 1     | P_L1_01   |Run Bsa.efi| UEFI     |
+| \-      | Covered by BSA Rules                   | 1     | P_L1_01   |Run Bsa.efi| UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 4,68    | Check PE 4KB Granule Support           | 1     | P_L1PE_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
@@ -51,9 +51,9 @@ The below table provides the following details
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 687     | Check EA Capability                    | 1     | P_L1PCI_2 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | RuntimeServices/VariableServicesTest   | 1     | P_L1NV_01 | Yes       | SCT      |
+| \-      | RuntimeServices/VariableServicesTest   | 1     | P_L1NV_01 | Yes       | SCT      |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
-| -       | RuntimeServices/VariableServicesTest   | 1     | P_L1SE_01 | Yes       | SCT      |
+| \-      | RuntimeServices/VariableServicesTest   | 1     | P_L1SE_01 | Yes       | SCT      |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
 | 1501    | Check TPM Version                      | 1     | P_L1TP_01 | Yes       | UEFI     |
 +---------+----------------------------------------+-------+-----------+-----------+----------+
