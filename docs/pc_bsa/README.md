@@ -8,7 +8,7 @@ For more information, please refer the [PC-BSA specification](https://developer.
 ## Release Details
  - Code Quality: BETA
  - The tests are written for version 1.0 of the PC BSA specification.
- - For more details on tests implemented in this release, Please refer [PC-BSA Test Scenario Document](docs/arm_pc-bsa_architecture_compliance_test_scenario.pdf).
+ - For more details on tests implemented in this release, Please refer [PC-BSA Test Scenario Document](arm_pc-bsa_architecture_compliance_test_scenario.pdf).
 
 ## PC BSA UEFI Shell Application Build Instructions
 
