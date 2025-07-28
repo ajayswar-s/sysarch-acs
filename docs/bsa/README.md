@@ -23,10 +23,11 @@ Note: The details of the packages are beyond the scope of this document.
 ### 1. Build Steps
 
 1. Setup edk2 build directory
->	 git clone git clone --branch edk2-stable202505 --depth 1 git@github.com:tianocore/edk2.git
->	 git clone https://github.com/tianocore/edk2-libc edk2/edk2-libc
->	 cd edk2
->	 git submodule update --init --recursive
+
+>	 git clone git clone --branch edk2-stable202505 --depth 1 git@github.com:tianocore/edk2.git<br>
+>	 git clone https://github.com/tianocore/edk2-libc edk2/edk2-libc<br>
+>	 cd edk2<br>
+>	 git submodule update --init --recursive<br>
 
 2. Download source files and apply edk2 patch
 >	 git clone "ssh://ajas01@ap-gerrit-1.ap01.arm.com:29418/avk/sysarch-acs" ShellPkg/Application/sysarch-acs
