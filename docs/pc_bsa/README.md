@@ -112,10 +112,10 @@ After the run is complete, you can remove the PC BSA module from the system if i
 shell> sudo rmmod bsa_acs
 shell> sudo rmmod sbsa_acs
 ```
-- For information on the PC BSA Linux build parameters and limitation, see the [**Build Paramters and Limitations**](../../README.md#build-script-arguments)
+- For information on the PC BSA Linux build parameters and limitation, see the [**Build Parameters and Limitations**](../../README.md#build-script-arguments)
 
 ## Running PC-BSA UEFI Application on TC3 Platform
-Note: This section outlines instructions to run the PC-BSA UEFI application out of box using TC3 Arm FVP.
+**Note:** This section outlines instructions to run the PC-BSA UEFI application out of box using TC3 Arm FVP.
 
 ### 1. Downloading and Building TC3 software stack
 
@@ -139,7 +139,7 @@ Follow the steps in [**Emulation environment with secondary-storage**](#21-emula
 
 ### 5. Update ACS Image Path in Model Run Script
 
-- Note: Replace <TC_WORKSPACE> with actual working directory created during [**Downloading and Building TC3 software stack**](#1-downloading-and-building-tc3-software-stack)
+- **Note:** Replace <TC_WORKSPACE> with actual working directory created during [**Downloading and Building TC3 software stack**](#1-downloading-and-building-tc3-software-stack)
 
 ```bash
 sed -i 's|ACS_DISK_IMAGE="\$DEPLOY_DIR/systemready_acs_live_image.img"|ACS_DISK_IMAGE="\$DEPLOY_DIR/hda.img"|' <TC_WORKSPACE>/run-scripts/common/run_model.sh
@@ -171,7 +171,7 @@ PC_bsa.efi      # Launch the PC BSA test
 
 ### Notes
 
-- Ensure the `.efi` binary is copied correctly into the image using the steps in the [secondary-storage setup section](../README.md#22-emulation-environment-with-secondary-storage).
+- Ensure the `.efi` binary is copied correctly into the image using the steps in the [secondary-storage setup section](#21-emulation-environment-with-secondary-storage).
 - Capture UART output logs for test verification and reporting.
 
 ## Guidance on running SCT testcase
