@@ -15,7 +15,7 @@
 - [Baremetal Abstraction](acs-build-steps---bare-metal-abstraction)
 - [DRTM ACS](#drtm-system-mpam-mem_test-and-pc-bsa-test)
 - [System MPAM](#drtm-system-mpam-mem_test-and-pc-bsa-test)
-- [mem_test](#drtm-system-mpam-mem_test-and-pc-bsa-testt)
+- [mem_test](#drtm-system-mpam-mem_test-and-pc-bsa-test)
 - [PC-BSA](#drtm-system-mpam-mem_test-and-pc-bsa-test)
 
 ## Introduction to Arm sysarch-acs
@@ -473,7 +473,7 @@ The Arm SystemReady ACS test suite may run at a higher privilege level. An attac
 - To run DRTM ACS, please see the [DRTM README](docs/drtm/README.md)
 - To run System MPAM tests, see the [MPAM README](docs/mpam/README.md)
 - To run mem_test, see the [MEMTEST_README](mem_test/README.md)
-- To run PC-BSA tests, See the [PCBSA_README](docs/pc_bsa/READ.md)
+- To run PC-BSA tests, See the [PCBSA_README](docs/pc_bsa/README.md)
 
 SYSARCH ACS is distributed under Apache v2.0 License.
 
