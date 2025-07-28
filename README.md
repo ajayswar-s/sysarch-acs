@@ -13,9 +13,10 @@
   - [ACS build steps - UEFI Shell application](#acs-build-steps---uefi-shell-application-2)
 - [Linux Application](#linux-application)
 - [Baremetal Abstraction](acs-build-steps---bare-metal-abstraction)
-- [DRTM ACS](#drtm-system-mpam-and-mem_test)
-- [System MPAM](#drtm-system-mpam-and-mem_test)
-- [mem_test](#drtm-system-mpam-and-mem_test)
+- [DRTM ACS](#drtm-system-mpam-mem_test-and-pc-bsa-test)
+- [System MPAM](#drtm-system-mpam-mem_test-and-pc-bsa-test)
+- [mem_test](#drtm-system-mpam-mem_test-and-pc-bsa-testt)
+- [PC-BSA](#drtm-system-mpam-mem_test-and-pc-bsa-test)
 
 ## Introduction to Arm sysarch-acs
 
@@ -25,6 +26,7 @@ This repository is a centralized collection of **compliance test suites** design
 * **SBSA** (Server Base System Architecture)
 * **SYS-MPAM** (System-level Memory Partitioning and Monitoring)
 * **DRTM** (Dynamic Root of Trust for Measurement)
+* **PC-BSA** (Personal Computing Base System Architecture)
 
 The goal of this repository is to provide a consistent and reusable framework for **system integrators**, **silicon vendors**, **firmware developers**, and **platform validation teams** to ensure their implementations meet architectural compliance requirements. These suites are platform-agnostic and can be integrated into both development and manufacturing validation pipelines.
 
@@ -466,11 +468,12 @@ The Arm SystemReady ACS test suite may run at a higher privilege level. An attac
 
 **Note:** To build the ACS with NIST Statistical Test Suite, see the [arm SBSA_NIST_User_Guide Document](docs/sbsa/arm_sbsa_nist_user_guide.md)
 
-## DRTM, System MPAM and mem_test
+## DRTM, System MPAM, mem_test and PC BSA test
 **Note:**
 - To run DRTM ACS, please see the [DRTM README](docs/drtm/README.md)
 - To run System MPAM tests, see the [MPAM README](docs/mpam/README.md)
 - To run mem_test, see the [MEMTEST_README](mem_test/README.md)
+- To run PC-BSA tests, See the [PCBSA_README](docs/pc_bsa/READ.md)
 
 SYSARCH ACS is distributed under Apache v2.0 License.
 
