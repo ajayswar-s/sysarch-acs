@@ -11,6 +11,7 @@ The below table provides the following details
 **Note:**
    For rules not testable by ACS, a **manual declaration of compliance** from the DUT owner is required for PC BSA compliance.
 
+
 +---------+----------------------------------------+-------+-----------+------------------+----------+
 | Test No | Test Description                       | Level | Rule ID   | Coverage by ACS  | Platform |
 +=========+========================================+=======+===========+==================+==========+
