@@ -6,15 +6,11 @@
 For more information, download the [PC-BSA specification](https://developer.arm.com/documentation/den0151/latest).
 
 ## Release details
- - Code Quality: Alpha
+ - Code Quality: Beta
  - The tests are written for version 1.0 of the PC BSA specification.
  - For more details on tests implemented in this release, Please refer [PC-BSA Test Scenario Document](docs/arm_pc-bsa_architecture_compliance_test_scenario.pdf).
 
-## GitHub branch
-  - To pick up the release version of the code, checkout the corresponding tag from the main branch.
-  - To get the latest version of the code with bug fixes and new features, use the main branch.
-
-## ACS build steps - UEFI Shell application
+## PC BSA build steps - UEFI Shell application
 
 ### Prerequisites
 Before starting the build, ensure that the following requirements are met.
@@ -41,90 +37,7 @@ Note: The details of the packages are beyond the scope of this document.
 6.  Add the following to the [components] section of edk2/ShellPkg/ShellPkg.dsc
 > ShellPkg/Application/bsa-acs/pc_bsa/uefi_app/PCBsaAcs.inf
 
-### 1.1 On Linux build environment, perform the following steps:
-- On x86 machine
-> wget https://developer.arm.com/-/media/Files/downloads/gnu/13.2.rel1/binrel/arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
 
-> tar -xf arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu.tar.xz
-
-> export GCC49_AARCH64_PREFIX= GCC 13.2 toolchain path pointing to arm-gnu-toolchain-13.2.rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
-
-- On AArch64 machine
-> export GCC49_AARCH64_PREFIX=/usr/bin
-
-- From inside the edk2 directory in console
-
-> export PACKAGES_PATH=$PWD/edk2-libc
-
-> source edksetup.sh
-
-> make -C BaseTools/Source/C
-
-> source ShellPkg/Application/bsa-acs/tools/scripts/acsbuild.sh ENABLE_PCBSA
-### 2. Build output
-
-The EFI executable file is generated at <edk2_path>/Build/Shell/DEBUG_GCC49/AARCH64/PC_Bsa.efi
-
-### 3. Execution Steps
-
-The execution of the compliance suite varies depending on the test environment.
-These steps assume that the test suite is invoked through the ACS UEFI shell application.
-
-#### Firmware Dependencies
-- If the system supports LPI’s (Interrupt ID > 8192), then Firmware should have support for installing handler for LPI interrupts.
-    - If you are using edk2, change the ArmGic driver in the ArmPkg to obtain support for installing handler for LPI’s.
-    - Add the following in edk2/ArmPkg/Drivers/ArmGic/GicV3/ArmGicV3Dxe.c
->        - After [#define ARM_GIC_DEFAULT_PRIORITY  0x80]
->          +#define ARM_GIC_MAX_NUM_INTERRUPT 16384
->        - Change this in GicV3DxeInitialize Function.
->          -mGicNumInterrupts      = ArmGicGetMaxNumInterrupts (mGicDistributorBase);
->          +mGicNumInterrupts      = ARM_GIC_MAX_NUM_INTERRUPT;
-
-### 3.1 On Silicon
-On a system where a USB port is available and functional, perform the following steps:
-
-1. Copy 'PC_Bsa.efi' to a USB Flash drive. Path for 'PC_Bsa.efi' is present in step 2.
-2. Plug in the USB Flash drive to one of the functional USB ports on the system.
-3. Boot the system to UEFI shell.
-4. To determine the file system number of the plugged in USB drive, execute 'map -r' command.
-5. Type 'fsx' where 'x' is replaced by the number determined in step 4.
-6. To start the compliance tests, run the executable PC_Bsa.efi with the appropriate parameters.
-   For details on the parameters, refer to [arm BSA User Guide Document](../docs/arm_bsa_architecture_compliance_user_guide.pdf)
-> shell> PC_Bsa.efi
-7. Copy the UART console output to a log file for analysis and certification.
-
-
-### 3.2 Emulation environment with secondary storage
-On an emulation environment with secondary storage, perform the following steps:
-
-1. Create an image file which contains the 'PC_Bsa.efi' file. For Example:
-  - mkfs.vfat -C -n HD0 \<name of image\>.img 2097152.
-    Here 2097152 is the size of the image.
-  - sudo mount -o rw,loop=/dev/loop0,uid=`whoami`,gid=`whoami` \<name of image\>.img /mnt/pcbsa.
-    If loop0 is busy, specify the loop that is free
-  - cp  "\<path to application\>/PC_Bsa.efi" /mnt/pcbsa/
-  - sudo umount /mnt/pcbsa
-2. Load the image file to the secondary storage using a backdoor.
-   The steps followed to load the image file are emulation environment-specific and beyond the scope of this document.
-3. Boot the system to UEFI shell.
-4. To determine the file system number of the secondary storage, execute 'map -r' command.
-5. Type 'fsx' where 'x' is replaced by the number determined in step 4.
-6. To start the compliance tests, run the executable PC_Bsa.efi with the appropriate parameters.
-   For details on the parameters, see the [arm BSA User Guide Document](../docs/arm_bsa_architecture_compliance_user_guide.pdf)
-> shell> PC_Bsa.efi
-7. Copy the UART console output to a log file for analysis and certification.
-
-
-### 3.3 Emulation environment without secondary storage
-On an emulation platform where secondary storage is not available, perform the following steps:
-
-1. Add the path to 'PC_Bsa.efi' file in the UEFI FD file.
-2. Build UEFI image including the UEFI Shell.
-3. Boot the system to UEFI shell.
-4. Run the executable 'PC_Bsa.efi' to start the compliance tests.
-   For details about the parameters, see the [arm BSA User Guide Document](../docs/arm_bsa_architecture_compliance_user_guide.pdf).
-> shell> PC_Bsa.efi
-5. Copy the UART console output to a log file for analysis and certification.
 
 ## Limitations
 
