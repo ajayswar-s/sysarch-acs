@@ -32,33 +32,33 @@ Note: The details of the packages are beyond the scope of this document.
 2. Download source files and apply edk2 patch
 >	 git clone "ssh://ajas01@ap-gerrit-1.ap01.arm.com:29418/avk/sysarch-acs" ShellPkg/Application/sysarch-acs
 
-3. Build bsa-acs UEFI app <br>
+3. Build pc-bsa-acs UEFI app <br>
 Note :  Install GCC-ARM 13.2 [toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
->          export GCC49_AARCH64_PREFIX=<path to CC>arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-
->          export PACKAGES_PATH=`pwd`/edk2-libc
->          source edksetup.sh
->          make -C BaseTools/Source/C
->          source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh pc_bsa
+>  export GCC49_AARCH64_PREFIX=<path to CC>arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-<br>
+>  export PACKAGES_PATH=$pwd/edk2-libc<br>
+>  source edksetup.sh<br>
+>  make -C BaseTools/Source/C<br>
+>  source ShellPkg/Application/sysarch-acs/tools/scripts/acsbuild.sh pc_bsa<br>
 
-4. BSA EFI application path
+4. PC BSA EFI application path
 - The EFI executable file is generated at <edk2-path>/Build/Shell/DEBUG_GCC49/AARCH64/PC_Bsa.efi
 
 
-#### 2.2 Emulation environment with secondary storage
+### 2 Emulation environment with secondary storage
 On an emulation environment with secondary storage, perform the following steps:
 
 1. Create an image file which contains the '.efi' file. For example:
-  - mkfs.vfat -C -n HD0 hda.img 2097152
-  - sudo mount hda.img /mnt/acs/
-  - sudo cp PC_Bsa.efi /mnt/acs
-  - sudo umount /mnt/acs
+>  mkfs.vfat -C -n HD0 hda.img 2097152<br>
+>  sudo mount hda.img /mnt/acs/<br>
+>  sudo cp PC_Bsa.efi /mnt/acs<br>
+>  sudo umount /mnt/acs<br>
 Note: If /mnt/acs/ is not already created, you may need to create it using mkdir -p /mnt/acs/.
 
 2. Load the image file to the secondary storage using a backdoor. The steps to load the image file are emulation environment-specific and beyond the scope of this document.
 3. Boot the system to UEFI shell.
 4. To determine the file system number of the secondary storage, execute 'map -r' command.
 5. Type 'fs<x>' where '<x>' is replaced by the number determined in step 4.
-6. To start the compliance tests, run the executable Bsa.efi with the appropriate parameters.
+6. To start the compliance tests, run the executable PC_Bsa.efi with the appropriate parameters.
 7. Copy the UART console output to a log file for analysis and certification
 
 #### 2.3 Emulation environment without secondary storage
@@ -89,24 +89,24 @@ Before the PC BSA ACS Linux application can be run, load the PC BSA ACS kernel m
 
 ```sh
 shell> insmod pcbsa_acs.ko
-```sh
+```
 
 ### 3. Running PC BSA ACS
 
 ```sh
 shell> ./pcbsa_app
-```sh
+```
 ### 4. PC BSA Linux Test Log View
 
 ```sh
 shell> sudo dmesg | tail -500 # print last 500 kernel logs
-```sh
+```
 After the run is complete, you can remove the PC BSA module from the system if it is no longer needed.
 
 ```sh
 shell> sudo rmmod bsa_acs
 shell> sudo rmmod sbsa_acs
-```sh
+```
 - For information on the PC BSA Linux build parameters and limitation, see the README linux.
 
 ### Test suite execution on TC3 platform
@@ -203,7 +203,7 @@ PC_bsa.efi      # Launch the PC BSA test
 
  - The PC BSA tests are distributed across different ACS components — including SCT tests, UEFI-based tests, and a Linux-based test. The Linux portion consists of a single test, which is part of the PC BSA app. This app can be built using the steps provided below; however, unlike BSA and SBSA, it does not have a prebuilt .img system-ready image.
 
-Some of the PC BSA rules are also covered by SCT tests. Since the coverage is spread across different test types, you need to run all testsuites to ensure full validation. Additionally, a few test cases may require manual verification.
+ - Some of the PC BSA rules are also covered by SCT tests. Since the coverage is spread across different test types, you need to run all testsuites to ensure full validation. Additionally, a few test cases may require manual verification.
 
 ## License
 PC BSA ACS is distributed under Apache v2.0 License.
