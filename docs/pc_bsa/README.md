@@ -33,8 +33,9 @@ Note: The details of the packages are beyond the scope of this document.
 
 ##### 3. Build PC-BSA UEFI Application <br>
 Note :  Install GCC-ARM 13.2 [toolchain](https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads)
-> 1. export GCC49_AARCH64_PREFIX=<path to arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-><br>
-For an AArch64 build it should point to /usr/bin/
+> 1. export GCC49_AARCH64_PREFIX=<path to arm-gnu-toolchain-13.2.Rel1-x86_64-aarch64-none-linux-gnu/bin/aarch64-none-linux-gnu-<br>
+
+For an AArch64 build,
 export GCC49_AARCH64_PREFIX=/usr/bin/aarch64-linux-gnu-
 
 > 3. export PACKAGES_PATH=$PWD/edk2-libc<br>
