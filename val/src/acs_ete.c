@@ -319,7 +319,7 @@ uint64_t parse_tracestream(uint8_t *trace_bytes, uint64_t trace_size)
 uint64_t val_ete_get_trace_timestamp(uint64_t buffer_address)
 {
 
-  uint8_t trace_bytes[100];
+  uint8_t trace_bytes[500];
   uint32_t i = 0;
   uint64_t timestamp = 0;
   uint64_t ts_value = 0;
@@ -327,7 +327,7 @@ uint64_t val_ete_get_trace_timestamp(uint64_t buffer_address)
   uint32_t index = val_pe_get_index_mpid(val_pe_get_mpid());
 
 
-  val_memcpy(trace_bytes, (void *)buffer_address, 100);
+  val_memcpy(trace_bytes, (void *)buffer_address, 500);
   ts_start_byte = parse_tracestream(trace_bytes, sizeof(trace_bytes));
   if (ts_start_byte == 0xFFFF) {
     val_print_primary_pe(ACS_PRINT_DEBUG, "\n      ETE Parsing failed", 0, index);
